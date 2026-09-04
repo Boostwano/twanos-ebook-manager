@@ -1,0 +1,19 @@
+Twano R4 Beta 2 — Reliability and Performance Test Package
+
+FIRST USE
+1. Double-click launcher.bat.
+2. Let it complete first-run setup; Twano then starts automatically.
+3. Follow docs\R4-Beta2-Complete-Testing-Guide.md.
+
+EVERY LATER TEST
+Double-click the same launcher.bat file.
+
+IMPORTANT
+- This Beta starts with a fresh 0-book catalogue in %LOCALAPPDATA%\Twano.
+- Your old development catalogue is not deleted.
+- Use copied/expendable books for quarantine and Restore testing.
+- Read docs\KNOWN_ISSUES_R4_BETA2.md before testing.
+- Keep screenshots and exact messages for any failure.
+
+The virtual environment and Git metadata are intentionally not included in the
+release ZIP.

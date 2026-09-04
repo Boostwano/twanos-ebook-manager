@@ -1,0 +1,50 @@
+name: Windows validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Compile and test on Windows
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONUTF8: "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Install Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Check dependency consistency
+        run: python -m pip check
+
+      - name: Compile source and tests
+        run: python -m compileall -q src tests tools
+
+      - name: Run automated tests
+        run: python -m pytest -v
+
+      - name: Check GitHub publication safety
+        run: python tools/check_github_readiness.py

@@ -1,0 +1,5 @@
+{
+  "catalogue_version": 1,
+  "policy": "Only packages whose SHA256 appears here may be installed. Bundled integrations are reviewed separately and do not execute third-party file changes.",
+  "packages": []
+}
